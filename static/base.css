@@ -1,0 +1,8 @@
+input {
+    outline: none;
+    border: 1px solid cadetblue;
+    padding: 0px 10px;
+    line-height: 40px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}

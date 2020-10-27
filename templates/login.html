@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" href="/static/base.css" />
+</head>
+<body>
+<form  class="login_form"  name = "login" action="/login" method="post" style="text-align: center">
+    <h1>用户登录</h1>
+    <input type="text" name="username" value="{{ .username }}" placeholder="用户名" /><br/>
+    <input type="password" name="password" value="{{ .password }}" placeholder="密码" /><br />
+    <input type="submit" value="登 录"><br />
+    <span>{{.err_msg}}</span>
+</form>
+</body>
+</html>
