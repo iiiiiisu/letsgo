@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100vh;
+            text-align: center;
+        }
+        header {
+            width: 100%;
+            box-shadow: 0px 3px 10px 1px #cccccc;
+        }
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+        footer {
+            padding: 15px 0px;
+        }
+        a {
+            color: cadetblue;
+            text-decoration: none;
+        }
+        div.hello{
+            font-size: 68px;
+            font-family: Arial, Monospaced, "MS UI Gothic";
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1>Net/Http Demo</h1>
+            {{ if .username }}
+                {{ .username }}
+            {{ else }}
+                <div>
+                    <a href="/login">登录</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/register">注册</a>
+                </div>
+            {{ end}}
+        </nav>
+    </header>
+    <div class="hello">Hello, everyone!</div>
+    <footer>
+        @Copyright Everyone, 2020-2021
+        Author: iiiiii`su (
+        <a href="github.com/iiiiiisu">Github</a> Or
+        <a href="gitee.com/iiiiiisu">Gitee</a>)
+        Blog: <a href="https://www.cnblogs.com/moxu-ez/">博客园</a>
+    </footer>
+</body>
+</html>
