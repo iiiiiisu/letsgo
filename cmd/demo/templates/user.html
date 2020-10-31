@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .p_nickname }} 的主页</title>
+    <link rel="stylesheet" href="/static/base.css" />
+</head>
+<body>
+{{ template "header" .}}
+<div>
+    {{ if .p_username }}
+        <div>用户名：{{ .p_username }}</div>
+        <div>昵称：{{ .p_nickname }}</div>
+        <div>头像：{{ .p_avatar }}</div>
+        <div>性别：{{ .p_gender }}</div>
+    {{ else }}
+        <span style="font-size: 68px; font-weight: 600">
+            用户不存在或已删除！！
+        </span>
+    {{ end }}
+</div>
+{{ template "footer" }}
+</body>
+</html>

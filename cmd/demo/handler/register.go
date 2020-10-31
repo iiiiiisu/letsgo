@@ -6,6 +6,7 @@ import (
 	"letsgo/pkg/handler"
 	"letsgo/pkg/response"
 	"letsgo/pkg/templates"
+	"log"
 	"net/http"
 )
 
@@ -15,7 +16,12 @@ type RegisterHandler struct {
 }
 
 func (h *RegisterHandler) Get(w http.ResponseWriter, r *http.Request) {
-	err := templates.Render(w, h.TplName, make(map[string]interface{}))
+	tpl, err := templates.Prepare(h.TplName, TplPath)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	err = response.HtmlResponse(w, tpl, make(map[string]interface{}))
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -40,6 +46,11 @@ func (h *RegisterHandler) Post(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/", http.StatusFound)
 		return
 	}
-	response.HtmlResponse(w, h.TplName, data)
+	tpl, err := templates.Prepare(h.TplName, TplPath)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	response.HtmlResponse(w, tpl, data)
 	return
 }

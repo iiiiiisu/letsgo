@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"letsgo/cmd/demo/models"
 	"letsgo/pkg/handler"
+	"letsgo/pkg/response"
 	"letsgo/pkg/templates"
+	"log"
 	"net/http"
 )
 
@@ -18,7 +20,12 @@ func (h *LoginHandler) Get(w http.ResponseWriter, r *http.Request) {
 		"username": "",
 		"password": "",
 	}
-	err := templates.Render(w, h.TplName, data)
+	tpl, err := templates.Prepare(h.TplName, TplPath)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	err = response.HtmlResponse(w, tpl, data)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -47,7 +54,12 @@ func (h *LoginHandler) Post(w http.ResponseWriter, r *http.Request) {
 			data["err_msg"] = "账号或密码错误"
 		}
 	}
-	err := templates.Render(w, h.TplName, data)
+	tpl, err := templates.Prepare(h.TplName, TplPath)
+	if err != nil {
+		log.Println(err)
+		return
+	}
+	err = response.HtmlResponse(w, tpl, data)
 	if err != nil {
 		fmt.Println(err)
 	}

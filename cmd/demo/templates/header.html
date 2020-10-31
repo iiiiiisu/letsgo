@@ -1,0 +1,23 @@
+{{ define "header" }}
+    <header>
+        <nav>
+            <a href="/" style="font-size: 24px">Net/Http Demo</a>
+            {{ if .username }}
+                <div class="hover-root">
+                    <a href="/user/{{ .username }}">
+                        <span>{{ .nickname }}</span>
+                    </a>
+                    <div class="hover-panel">
+                        <a href="/logout">退出登录</a>
+                    </div>
+                </div>
+            {{ else }}
+                <div>
+                    <a href="/login">登录</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/register">注册</a>
+                </div>
+            {{ end}}
+        </nav>
+    </header>
+{{ end }}

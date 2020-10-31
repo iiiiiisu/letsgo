@@ -1,11 +1,11 @@
 package response
 
 import (
-	"letsgo/pkg/templates"
+	"html/template"
 	"net/http"
 )
 
-func HtmlResponse(w http.ResponseWriter, tplName string, data map[string]interface{}) {
+func HtmlResponse(w http.ResponseWriter, tpl *template.Template, data map[string]interface{}) error {
 	w.Header().Set("Content-type", "text/html")
-	templates.Render(w, tplName, data)
+	return tpl.Execute(w, data)
 }

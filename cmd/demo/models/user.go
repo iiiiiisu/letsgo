@@ -2,6 +2,7 @@ package models
 
 import (
 	"database/sql"
+	"errors"
 )
 
 type User struct {
@@ -22,8 +23,17 @@ func (u *User) Login(username string, pwd string) bool {
 	return true
 }
 
-func (u *User) Logout() {
-
+func (u *User) Logout(sId string) bool {
+	if sId == "" {
+		return false
+	}
+	rConn := redisPool.Get()
+	defer rConn.Close()
+	_, err := rConn.Do("set", sId, "", "EX", "1800")
+	if err != nil {
+		return false
+	}
+	return true
 }
 
 func (u *User) Register(username string, pwd string, nickname string) bool {
@@ -49,4 +59,13 @@ func (u *User) SetSession(sId string) bool {
 	defer rConn.Close()
 	rConn.Do("set", sId, u.Username)
 	return true
+}
+
+func (u *User) Get() error {
+	if u.Username == "" {
+		return errors.New("No key select")
+	}
+	rows := db.QueryRow("select nickname, avatar, gender from users where username = ?;", u.Username)
+	err := rows.Scan(&u.Nickname, &u.Avatar, &u.Gender)
+	return err
 }

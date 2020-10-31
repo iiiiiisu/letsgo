@@ -38,7 +38,7 @@ func pathMatch(path string, route string) (isMatch bool, datas string) {
 			isMatch = false
 			return
 		} else if data != "" {
-			if datas == "" {
+			if datas != "" {
 				datas += "&"
 			}
 			datas += data
