@@ -1,0 +1,17 @@
+{
+  "app_name": "demo",
+  "version":"0.0.1",
+  "addr": "127.0.0.1:8000",
+  "databases": [{
+    "id": "default",
+    "name": "gd",
+    "host": "127.0.0.1",
+    "port": "3306",
+    "username": "root",
+    "password": "123456"
+  }],
+  "redis": [{
+      "addr": "127.0.0.1:6379",
+      "password": "123456"
+  }]
+}

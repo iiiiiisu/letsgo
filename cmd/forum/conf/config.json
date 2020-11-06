@@ -1,0 +1,13 @@
+{
+  "app_name": "forum",
+  "version":"0.0.1",
+  "addr": "127.0.0.1:8000",
+  "databases": [{
+    "id": "default",
+    "name": "forum",
+    "host": "127.0.0.1",
+    "port": "3306",
+    "username": "root",
+    "password": "123456"
+  }]
+}

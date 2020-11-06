@@ -11,5 +11,5 @@ func main() {
 	defer pkg.StopServe()
 	pkg.RegisterMiddlewares(&middleware.Middlewares)
 	pkg.LoadRouter(handler.UrlPattern)
-	pkg.ListenAndServe("localhost:8000")
+	pkg.Run()
 }

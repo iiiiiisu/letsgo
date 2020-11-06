@@ -6,13 +6,15 @@ import (
 
 var redisPool *redis.Pool
 
-func InitRedis() {
+func InitRedis(network, addr, pwd string) {
+	if network == "" {
+		network = "tcp"
+	}
 	redisPool = &redis.Pool{
 		MaxIdle:   3,
 		MaxActive: 8,
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp",
-				"localhost:6379", redis.DialPassword("123456"))
+			c, err := redis.Dial(network, addr, redis.DialPassword(pwd))
 			if err != nil {
 				return nil, err
 			}
